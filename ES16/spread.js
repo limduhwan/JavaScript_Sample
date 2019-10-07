@@ -11,6 +11,7 @@ var arrReducer = (state=[])=>{
 
 console.log(arrReducer(arrState));
 
+///////////////////////////////////////
 var objState = {type:1,name:2,ref:3};
 var objReducer = (state={})=>{
     return {
@@ -25,3 +26,31 @@ var objReducer = (state={})=>{
 };
 
 console.log(objReducer(objState));
+
+///////////////////////////////////////
+var {a1, a2, ...rest_a} = {a1: 10, a2: 20, a3: 30, a4: 40};
+
+console.log(a1);
+console.log(a2);
+console.log(rest_a);
+///////////////////////////////////////
+
+var key = 'it is key';
+var { 'an-apple':an_apple, [key]:it_is_key } = {'an-apple' : 10, 'it is key' : 20};
+console.log(an_apple);
+console.log(it_is_key);
+
+///////////////////////////////////////
+const kim = {
+    name: 'kim',
+    age: 10,
+    addr: 'kor',
+    friends: [
+        {name: 'joe', age: 20, addr: 'usa'},
+        {name: 'miko', age: 30, addr: 'jp'}
+    ]
+}
+
+var { name: userName, friends: [, {name: jpFriend}] } = kim;
+console.log(userName);
+console.log(jpFriend);
