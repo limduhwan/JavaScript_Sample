@@ -1,17 +1,24 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <style>* { padding: 0; margin: 0; } canvas { background: #eee; display: block; margin: 0 auto; }</style>
 </head>
 <body>
 
-<canvas id="myCanvas" width="900" height="320"></canvas>
+<canvas id="myCanvas" width="400" height="200"></canvas>
 
 <script>
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
 
-    const ballRadius = 100;
+    const ballRadius = 10;
+
+    const paddleWidth = 200;
+    const paddleHeight = 20;
+
+    let paddleX = (canvas.width - paddleWidth)/2;
+    let paddleY = (canvas.height - paddleHeight);
 
     let x = 0 + ballRadius;
     let y = canvas.height-ballRadius;
@@ -19,33 +26,81 @@
     let dx = 2;
     let dy = -2;
 
+    let rightPressed = false;
+    let leftPressed = false;
+    let gameOver = false;
+
     drawBall = () => {
         ctx.beginPath();
         ctx.arc(x, y, ballRadius, 0, Math.PI*2);
 
-        // let aaa = {getRandomColor};
-        // ctx.fillStyle = aaa;
-
-        // console.log(aaa)
+        ctx.fillStyle = "#0095DD"; //"#0095DD"
 
         ctx.fill();
         ctx.closePath();
     }
 
+    drawPaddle = () => {
+        ctx.beginPath();
+
+        ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
+
+        ctx.fillStyle = "#0095DD"; //"#0095DD"
+
+        ctx.fill();
+        ctx.closePath();
+    }
+    //
+    // draw = () => {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     drawBall();
+    //     drawPaddle();
+    //
+    //     //상하단에 닿았다면
+    //     if(y + dy - ballRadius< 0 || y + dy + ballRadius > canvas.height ){
+    //         dy = -dy;
+    //     }
+    //
+    //     //좌우에 닿았다면
+    //     if(x + dx - ballRadius < 0 || x + dx + ballRadius> canvas.width){
+    //         dx = -dx;
+    //     }
+    //
+    //     leftPressed && paddleX > 0  ? paddleX -= 7 : paddleX;
+    //     rightPressed && paddleX + paddleWidth < canvas.width ? paddleX += 7 : paddleX;
+    //
+    //     console.log(paddleX);
+    //     console.log(paddleY);
+    //
+    //     x += dx;
+    //     y += dy;
+    // }
+
     draw = () => {
+        if(gameOver){return};
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
+        drawPaddle();
 
-        //상단에 닿았다면
-        //하단에 닿았다면
-        if(y + dy - ballRadius< 0 || y + dy + ballRadius > canvas.height ){
+        //상하단에 닿았다면
+        if(y + dy - ballRadius< 0) {
             dy = -dy;
+        }else if( (x >= paddleX && x <= paddleX+paddleWidth) && ( y<=canvas.height && y>= paddleY)) {  // Paddle에 맞았을 경우
+            console.log("Hit paddle");
+            dy = -dy;
+        }else if(y + dy + ballRadius > canvas.height){ // 그냥 하단에 맞았을 경우
+            console.log("Game Over");
+            gameOver = true;
         }
 
         //좌우에 닿았다면
         if(x + dx - ballRadius < 0 || x + dx + ballRadius> canvas.width){
             dx = -dx;
         }
+
+        leftPressed && paddleX > 0  ? paddleX -= 7 : paddleX;
+        rightPressed && paddleX + paddleWidth < canvas.width ? paddleX += 7 : paddleX;
 
         x += dx;
         y += dy;
@@ -64,6 +119,26 @@
         return color;
     }
 
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+
+    function keyDownHandler(e) {
+        if(e.keyCode == 39) {
+            rightPressed = true;
+        }
+        else if(e.keyCode == 37) {
+            leftPressed = true;
+        }
+    }
+
+    function keyUpHandler(e) {
+        if(e.keyCode == 39) {
+            rightPressed = false;
+        }
+        else if(e.keyCode == 37) {
+            leftPressed = false;
+        }
+    }
 </script>
 
 </body>
