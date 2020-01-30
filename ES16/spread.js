@@ -13,7 +13,7 @@ console.log(arrReducer(arrState));
 
 ///////////////////////////////////////
 var objState = {type:1,name:2,ref:3};
-var objReducer = (state={})=>{
+var objReducer = ( state={} ) => {
     return {
         ...state,
         name:'야호'
@@ -54,3 +54,10 @@ const kim = {
 var { name: userName, friends: [, {name: jpFriend}] } = kim;
 console.log(userName);
 console.log(jpFriend);
+
+///////////////////////////////////////
+const animalList = ["CAT", "DOG", "TIGER"];
+const [cat, ...restAnimalList] = animalList;
+console.log(cat);
+console.log(animalList);
+

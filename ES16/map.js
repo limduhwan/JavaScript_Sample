@@ -9,3 +9,11 @@ users.map( ({name, age, addr} ) => {
     console.log(age);
     console.log(addr);
 })
+
+let aaa = users.map( ({name, age} ) => {
+   return name+"//"+age
+})
+
+
+
+console.log(aaa)

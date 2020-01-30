@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="900" height="320"></canvas>
+
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const ballRadius = 100;
+
+    let x = 0 + ballRadius;
+    let y = canvas.height-ballRadius;
+
+    let dx = 2;
+    let dy = -2;
+
+    drawBall = () => {
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+
+        // let aaa = {getRandomColor};
+        // ctx.fillStyle = aaa;
+
+        // console.log(aaa)
+
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBall();
+
+        //상단에 닿았다면
+        //하단에 닿았다면
+        if(y + dy - ballRadius< 0 || y + dy + ballRadius > canvas.height ){
+            dy = -dy;
+        }
+
+        //좌우에 닿았다면
+        if(x + dx - ballRadius < 0 || x + dx + ballRadius> canvas.width){
+            dx = -dx;
+        }
+
+        x += dx;
+        y += dy;
+    }
+
+    setInterval(draw, 10);
+
+    getRandomColor = () => {
+        let letters = ['0','1','2','3','4','5','6','7','8','9',"A","B","C","D","E","F"] ;
+        let color = '#';
+
+        for (let value = 0; value <  6; value++) {
+            color += letters[Math.floor(Math.random()*16)];
+        }
+
+        return color;
+    }
+
+</script>
+
+</body>
+</html>
