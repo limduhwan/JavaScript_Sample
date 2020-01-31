@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    let index = 0;
+    window.onload = () => {
+        slideShow();
+    }
+
+    slideShow = () =>{
+        let i;
+        let x = document.getElementsByClassName("slide1");
+
+        for(i=0; i<x.length; i++){
+            x[i].style.display = "none";
+        }
+
+        index++;
+        if(index > x.length){
+            index = 1;
+        }
+        x[index-1].style.display = "block";
+        setTimeout(slideShow, 3000);
+    }
+
+</script>
+<body>
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/3.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/4.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/5.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/6.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/7.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/8.jpeg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/10.png">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/11.png">
+
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/13.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/16.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/17.jpg">
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/18.jpg">-->
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/19.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/21.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/22.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/23.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/24.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/25.jpg">
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/26.jpg">-->
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/27.jpg">
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/28.jpg">-->
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/29.jpg">-->
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/30.jpg">-->
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/31.jpg">
+ <img class = "slide1" src = "/Users/actmember/Desktop/teamPic/32.jpg">
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/33.jpg">-->
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/34.jpg">-->
+<!--<img class = "slide1" src = "/Users/actmember/Desktop/teamPic/35.jpg">-->
+
+</body>
+
+
+</html>
