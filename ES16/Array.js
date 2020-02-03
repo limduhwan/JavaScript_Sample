@@ -13,3 +13,12 @@ console.log(array); //[ [], [], [], [] ]
 
 const array2 = Array.from(Array(2), () => Array());
 console.log(array2);
+
+//filter 3이하인 것들만 뽑기
+const testArray = [1,2,3,4,5];
+const newArray = testArray.filter(function(element, index, array){
+    console.log(element +' || '+ index +' || '+ array);
+    return element <= 3;
+});
+
+console.log('newArray ' + newArray);
