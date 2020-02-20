@@ -99,7 +99,7 @@
         }else if( (x >= paddleX && x <= paddleX+paddleWidth) && ( y<=canvas.height && y>= paddleY)) {  // Paddle에 맞았을 경우
             console.log("Hit paddle");
             dy = -dy;
-        }else if(y + dy + ballRadius > canvas.height){ // 그냥 하단에 맞았을 경우
+        }else if(y + dy + ballRadius > canvas.height){ //  그냥 하단에 맞았을 경우
             console.log("Game Over");
             gameOver = true;
         }
