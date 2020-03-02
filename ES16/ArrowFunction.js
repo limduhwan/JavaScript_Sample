@@ -4,18 +4,18 @@ var odds = evens.map(v => v+1);
 
 console.log(odds);
 
-var nums = evens.map( (v,i) => v+i);
+var nums = evens.map( (v,i) => (v+i) );
 
 console.log(nums);
 
-var pairs = evens.map( v => ({ even: v, odd: v+1 }) );
+var pairs = evens.map( v => ({ even: v, odd: v+1 }) ); // Return object
 
 console.log(pairs);
 
 var fives = [];
 
 nums.forEach( v => {
-    if( v%5 === 0)
+    if (v % 5 === 0)
         fives.push(v);
 });
 

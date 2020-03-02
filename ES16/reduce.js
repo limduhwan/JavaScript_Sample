@@ -1,4 +1,4 @@
-//배열.reduce((누적값, 현잿값, 인덱스, 요소) => { return 결과 }, 초깃값);
+//배열.reduce((누적값, 현재값, 인덱스, 요소) => { return 결과 }, 초깃값);
 
 const oneTwoThree = [1, 2, 3];
 

@@ -22,3 +22,25 @@ const newArray = testArray.filter(function(element, index, array){
 });
 
 console.log('newArray ' + newArray);
+
+
+const children = ['1','2','3','4','5'];
+
+const dimensions = [
+    { width: 400, height: 100 },
+    { width: 300, height: 400 },
+    { width: 200, height: 300 },
+    { width: 300, height: 300 },
+    { width: 200, height: 300 },
+]
+
+let heights = [];
+
+children.forEach((child, i) => {
+    let { width, height } = dimensions[i]
+    let index = heights.indexOf(Math.min(...heights))
+    console.log(index);
+})
+
+console.log('...dimensions  ', ...dimensions);
+console.log('dimensions  ', dimensions);
