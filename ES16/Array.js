@@ -10,7 +10,7 @@ console.log(array1);
 const array = Array(2).fill(null).map( () => Array() );
 console.log(array); //[ [], [], [], [] ]
 
-
+const children = ['1','2','3','4','5'];
 const array2 = Array.from(Array(2), () => Array());
 console.log(array2);
 
@@ -24,7 +24,7 @@ const newArray = testArray.filter(function(element, index, array){
 console.log('newArray ' + newArray);
 
 
-const children = ['1','2','3','4','5'];
+const children1 = ['1','2','3','4','5'];
 
 const dimensions = [
     { width: 400, height: 100 },
@@ -45,7 +45,8 @@ children.forEach((child, i) => {
 console.log('...dimensions  ', ...dimensions);
 console.log('dimensions  ', dimensions);
 
-const children1 = ['1','2','3','4','5'];
+const children2 = ['1','2','3','4','5', []];
 
-console.log(children1.concat(['6']));
+console.log(children2[children2.length - 1]);
 
+console.log(children2[children2.length - 1].concat(['10', '20']));
