@@ -44,3 +44,8 @@ children.forEach((child, i) => {
 
 console.log('...dimensions  ', ...dimensions);
 console.log('dimensions  ', dimensions);
+
+const children1 = ['1','2','3','4','5'];
+
+console.log(children1.concat(['6']));
+
