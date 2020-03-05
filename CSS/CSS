@@ -1,0 +1,19 @@
+[flex]
+- https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- https://naradesign.github.io/article/flex-justify-align.html
+
+[point-event]
+-https://webdir.tistory.com/506
+
+
+[transform]
+-https://www.tabmode.com/homepage/transform-translate.html
+
+
+[Values for -webkit-user-drag attribute]
+none: Do not allow this element to be dragged.
+element: Allow this element to be dragged.
+auto: Use the default logic for determining
+whether the element should be dragged.
+(Images, links, and text selections are the only elements that can be dragged.)
+This is the default value.
