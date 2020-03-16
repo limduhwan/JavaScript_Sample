@@ -1,10 +1,13 @@
-function aaa () {
-  navigator.clipboard.writeText(document.querySelector('#out').value)
-    .then(() => {
-      ChromeSamples.log('Text copied.');
-    })
+const clipboard = require('clipboard-polyfill');
+
+function aaa() {
+  return new Promise( function(resolve,reject) {
+    clipboard.writeText('aaaa');
+  }).then(() => {
+    console.log('Text copied.');
+  })
     .catch(() => {
-      ChromeSamples.log('Failed to copy text.');
+      console.log('Failed to copy text.');
     });
 }
 

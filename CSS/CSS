@@ -17,3 +17,7 @@ auto: Use the default logic for determining
 whether the element should be dragged.
 (Images, links, and text selections are the only elements that can be dragged.)
 This is the default value.
+
+
+[white-space]
+https://www.codingfactory.net/10597

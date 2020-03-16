@@ -6,7 +6,16 @@ const dimensions = [
   { width: 200, height: 300 },
 ]
 // 1.Filter flat map ??
-console.log( dimensions.filter( ({width, height}) => width < 300 ).flatMap( (element) => element.split(" ")) );
+// console.log( dimensions.filter( ({width, height}) => width < 300 ).flatMap( (element) => element.split(" ")) );
+// const aaa = dimensions.flatMap((value, index, array)=> {
+//   console.log(value);
+// });
+//
+// console.log(aaa);
+
+let arrA = [1, 2, 3, 4];
+let arrB = arrA.flatMap(x => [x * 2]);
+console.log(arrB);
 
 // 2.Filter some // 배열 중 요소 하나라도 통과하는지
 // console.log( dimensions.filter( ({width, height}) => width < 300 ).some( ({width}) => width > 100 ) );

@@ -8,16 +8,19 @@ function getDataSuccess() {
 // console.log(getDataSuccess());
 
 // resolve()의 결과 값 data를 resolvedData로 받음
-// console.log(getDataSuccess().then(function(resolvedData) {
-//   console.log(resolvedData); // 100
-// }));
 
-// console.log(getData());
-function getDataFail() {
-  return new Promise(function(resolve, reject) {
-    reject(new Error("Request is failed"));
-  });
-}
+let aa = '';
+getDataSuccess().then(function(resolvedData) {
+  aa = resolvedData; // 100
+});
+
+console.log(getDataSuccess());
+
+// function getDataFail() {
+//   return new Promise(function(resolve, reject) {
+//     reject(new Error("Request is failed"));
+//   });
+// }
 
 // reject()의 결과 값 Error를 err에 받음
 // console.log(getDataFail().then(function(err) {
