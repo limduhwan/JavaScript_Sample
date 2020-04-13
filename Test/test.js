@@ -1,8 +1,23 @@
-// const fs = require('fs');
-// const PNG = require('pngjs').PNG;
+const sample1 = `<P>0123<li>456</li></P>`;
 
-const pwdTestDir = '/Users/actmember/Documents/dev/E2E_Testing_with_Puppeteer_Final/src/test/screenshots';
-const pwdOriginalDir = '/Users/actmember/Documents/dev/E2E_Testing_with_Puppeteer_Final/src/test/original';
+function htmlToJson(div,obj) {
+    if (!obj) {
+        obj = []
+    }
+    var tag = {}
+    tag['tagName'] = div.tagName;
+    console.log(tag['tagName']);
+    tag['children'] = []
+    for (var i = 0; i < div.children.length; i++) {
+        tag['children'].push(htmlToJson(div.children[i]))
+    }
+    for (var i = 0; i < div.attributes.length; i++) {
+        var attr = div.attributes[i]
+        tag['@' + attr.name] = attr.value
+    }
+    return tag;
+}
 
-const img1 = fs.createReadStream(`${pwdTestDir}/${fileName}.png`).pipe(new PNG()).on('parsed', doneReading);
-const img2 = fs.createReadStream(`${pwdOriginalDir}/${fileName}.png`).pipe(new PNG()).on('parsed', doneReading);
+// console.log(htmlToJson(sample1));
+console.log(JSON.parse(sample1));
+
