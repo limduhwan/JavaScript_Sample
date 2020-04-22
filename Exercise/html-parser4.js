@@ -187,33 +187,54 @@ class HtmlParser4 {
         return false;
     }
 
-    parse() {
-        // this.handleBreakLine();
+    run() {
+        this.preParse();
+    }
 
-        const {html, startIndex, parseLength} = this.data;
+    parse(parseStartIndex, parseEndIndex) {
+        console.log('parseStartIndex, parseEndIndex', parseStartIndex, parseEndIndex);
+
+
+
+    }
+
+    preParse() {
+        const { html, startIndex, parseLength } = this.data;
+
         let charIndex = 0;
         let tag = '';
         let tagType = '';
         let preTagType = '';
         let tagStartEnd = '';
         let result = '';
+        let parseStarted = false;
+        let parseStartIndex = 0;
+        let parseEndIndex = 0;
 
         console.log(html);
 
         for (let i = 0; i < html.length; i++) {
-            // console.log('startIndex, parseLength, html.charAt(i)', startIndex, parseLength);
-
-            //Countable
-            //1.< > 안에 없고
-            //2.</><> 이렇게 바로 붙어 있고
-            //3.<br>
-
             if (tagStartEnd === 'TAG_END') {
 
                 // console.log(tag, preTagType, tagType, tagStartEnd);
-                if (tagType === 'CHAR' || tag === 'br' || (preTagType === 'CLOSE_TAG' && tagType === 'OPEN_TAG')){
-                    console.log('=======', tag, preTagType, tagType);
+                if (tagType === 'CHAR' || (preTagType === 'CLOSE_TAG' && tagType === 'OPEN_TAG')){
+                    console.log('=======', tag, preTagType, tagType, parseStarted, result, charIndex);
+
+                    if(!parseStarted && charIndex >= startIndex && charIndex <= startIndex + parseLength - 1) {
+                        parseStarted = true;
+                        console.log('Parse Start', i-1);
+                        parseStartIndex = i-1;
+                    }
+
+                    if(parseStarted && charIndex === startIndex + parseLength - 1){
+                        parseStarted = false;
+                        console.log('Parse End', i-1);
+                        parseEndIndex = i-1;
+                        break;
+                    }
+
                     charIndex++;
+
                 }
 
                 if (preTagType !== tagType){
@@ -222,6 +243,7 @@ class HtmlParser4 {
 
                 tag = '';
             }
+
 
             if (html.charAt(i) === '<') {
                 if (html.charAt(i + 1) === '/') {
@@ -237,20 +259,21 @@ class HtmlParser4 {
                     if(tagStartEnd === 'TAG_END') { //글자이면
                         tagType = 'CHAR';
                     }
-
                     // console.log(html.charAt(i), tagType, tagStartEnd);
                     tag += html.charAt(i);
                 }
             }
         }
 
+        this.parse(parseStartIndex, parseEndIndex);
+        // console.log(result);
         return this.data.result;
         // return this.makeResult();
     }
 }
 
 const cccc = new HtmlParser4(sample6, index, length);
-const bbb = cccc.parse();
+const bbb = cccc.run();
 console.log(bbb);
 
 
