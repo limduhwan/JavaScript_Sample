@@ -1,13 +1,14 @@
-const index = 1;
-const length = 6;
+const index = 0;
+const length = 4;
 const sample = '<p>동<strong>해물</strong>과</p><ul><li>백<strong>두산</strong>이</li><li>마르고</li></ul><ol><li>닳<strong>도</strong>록</li><li>하나<strong>님이</strong></li></ol><p><strong>보우하사</strong></p>';
 const sample1 = '<P>0123<li>4<Strong>56</Strong>7</li></P>';
 const sample2 = `<p>동</p><p>해</p><p>물</p>`;
 const sample3 = `<p>동해물과</p><ul><li>백두산이</li></ul><ol><li>마르고닳도록</li></ol>`;
 const sample4 = `<p>동해물과</p><ul><li>백두산이</li></ul><p><br></p><ol><li>마르고닳도록</li></ol>`;
 const sample5 = `<p>동해물과</p><h2>백두</h2><h1>산이</h1><p><br></p><ul><li>마르고</li></ul>`;
+const sample6 = `<p>동</p><p><br></p><ul><li>해</li></ul><p><br></p><p>물</p>`;
 
-class HtmlParser3 {
+class HtmlParser4 {
     constructor(html, index, length) {
         this.data = {
             html,
@@ -189,86 +190,66 @@ class HtmlParser3 {
     parse() {
         // this.handleBreakLine();
 
-        const { html, startIndex, parseLength } = this.data;
-        console.log('html', html, startIndex, parseLength);
+        const {html, startIndex, parseLength} = this.data;
         let charIndex = 0;
-        let Tag = '';
-        let tagFlag = '';
-        let isBrTag = false;
+        let tag = '';
+        let tagType = '';
+        let preTagType = '';
+        let tagStartEnd = '';
+        let result = '';
+
+        console.log(html);
 
         for (let i = 0; i < html.length; i++) {
-            if (this.data.parseStart) {
-                this.data.result += html.charAt(i);
+            // console.log('startIndex, parseLength, html.charAt(i)', startIndex, parseLength);
 
-                if (tagFlag === 'openTag' || tagFlag === 'closeTag') {
-                    Tag += html.charAt(i);
-                }
+            //Countable
+            //1.< > 안에 없고
+            //2.</><> 이렇게 바로 붙어 있고
+            //3.<br>
 
-                if (html.charAt(i) === '<') {
-                    if (html.charAt(i + 1) === '/') {
-                        Tag += html.charAt(i);
-                        if (tagFlag === '') tagFlag = 'closeTag';
-                    } else {
-                        Tag += html.charAt(i);
-                        if (tagFlag === '') tagFlag = 'openTag';
-                    }
-                } else if (html.charAt(i) === '>') {
-                    if (tagFlag === 'closeTag') {
-                        this.data.closeTags.push(Tag);
-                        this.findMatchedTag(Tag);
-                    } else if (tagFlag === 'openTag') {
-                        if(Tag !== '<br>') {
-                            this.data.openTags.push(Tag);
-                        }
-                    }
-                    console.log('Tag', Tag);
-                    tagFlag = '';
-                    Tag = '';
-                }
-            }
+            if (tagStartEnd === 'TAG_END') {
 
-            if (html.charAt(i) === '<' && !this.isBrTag(i)) {
-                this.data.isTag = true;
-                continue;
-            }
-
-            if (html.charAt(i) === '>' && !this.isBrTag(i)) {
-                this.data.isTag = false;
-                continue;
-            }
-
-            if (this.data.isTag === false) {
-                // console.log('charIndex, startIndex', charIndex, startIndex, html.charAt(i));
-
-                if (!isBrTag && this.isBrTag(i)) {
-                    isBrTag = !isBrTag;
+                // console.log(tag, preTagType, tagType, tagStartEnd);
+                if (tagType === 'CHAR' || tag === 'br' || (preTagType === 'CLOSE_TAG' && tagType === 'OPEN_TAG')){
+                    console.log('=======', tag, preTagType, tagType);
                     charIndex++;
-                    continue;
                 }
 
-                if (!isBrTag && charIndex >= startIndex && charIndex <= startIndex + parseLength - 1) {
-                    if (!this.data.parseStart) {
-                        this.data.result += html.charAt(i);
-                    }
-
-                    this.data.parseStart = true;
-
-                    if (charIndex === startIndex + parseLength - 1) {
-                        // console.log('End CharIndex', html.charAt(i));
-                        this.data.parseStart = false;
-                        break;
-                    }
+                if (preTagType !== tagType){
+                    preTagType = tagType;
                 }
-                charIndex++;
-                // console.log(html.charAt(charIndex));
+
+                tag = '';
+            }
+
+            if (html.charAt(i) === '<') {
+                if (html.charAt(i + 1) === '/') {
+                    tagType = 'CLOSE_TAG';
+                } else {
+                    tagType = 'OPEN_TAG';
+                }
+                tagStartEnd = 'TAG_START';
+            } else if (html.charAt(i) === '>') {
+                tagStartEnd = 'TAG_END';
+            } else {
+                if (tagStartEnd === 'TAG_START' || tagStartEnd === 'TAG_END') {
+                    if(tagStartEnd === 'TAG_END') { //글자이면
+                        tagType = 'CHAR';
+                    }
+
+                    // console.log(html.charAt(i), tagType, tagStartEnd);
+                    tag += html.charAt(i);
+                }
             }
         }
 
-        return this.makeResult();
+        return this.data.result;
+        // return this.makeResult();
     }
 }
 
-const cccc = new HtmlParser3(sample5, index, length);
+const cccc = new HtmlParser4(sample6, index, length);
 const bbb = cccc.parse();
 console.log(bbb);
 
