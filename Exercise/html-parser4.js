@@ -7,12 +7,14 @@ const sample3 = `<p>동해물과</p><ul><li>백두산이</li></ul><ol><li>마르
 const sample4 = `<p>동해물과</p><ul><li>백두산이</li></ul><p><br></p><ol><li>마르고닳도록</li></ol>`;
 const sample5 = `<p>동해물과</p><h2>백두</h2><h1>산이</h1><p><br></p><ul><li>마르고</li></ul>`;
 const sample6 = `<ul><li><br></li><li>동</li><li><br></li><li>서</li><li>]</li></ul><p>남</p><ul><li><br></li><li><strong>르고</strong></li></ul><p><br></p><p>닳도록</p>`;
-//서남
+
+//TODO 체크박스 처리, li로 시작해서 li로 끝나는
+
 class HtmlParser4 {
     constructor(html, index, length) {
         this.data = {
             html,
-            startIndex: index,
+            startIndex: index,것
             parseLength: length,
             openTags: [],
             closeTags: [],
@@ -113,11 +115,11 @@ class HtmlParser4 {
         const tag = this.checkFirstTag(preTags);
 
 
-        //TODO 태그가 있는지 없는지로 바꾸기
+        // TODO 태그가 있는지 없는지로 바꾸기
         if (tag === 'ul' || tag === 'ol' || tag === 'p' || tag === 'h1' || tag === 'h2') {
             return `${preTags}${parseTarget}${postTags}`;
-        // } if (tag === 'li') {
-        //     return `<ul>${preTags}${parseTarget}${postTags}</ul>`;
+        } if (tag === 'li') {
+            return `<ul>${preTags}${parseTarget}${postTags}<ul>`;
         }
         return `<p>${preTags}${parseTarget}${postTags}</p>`;
     }
