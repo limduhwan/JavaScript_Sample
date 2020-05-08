@@ -113,7 +113,15 @@ class HtmlParser4 {
         console.log('preTags', preTags);
 
         const tag = this.checkFirstTag(preTags);
-
+        //
+        // const isHtml = this.isHTML(`${preTags}${parseTarget}${postTags}`);
+        //
+        // if (!isHtml) {
+        //     return `<p>${preTags}${parseTarget}${postTags}</p>`;
+        // } if (isHtml && tag === 'li') {
+        //     return `<ul>${preTags}${parseTarget}${postTags}<ul>`;
+        // }
+        // return `${preTags}${parseTarget}${postTags}`;
 
         // TODO 태그가 있는지 없는지로 바꾸기
         if (tag === 'ul' || tag === 'ol' || tag === 'p' || tag === 'h1' || tag === 'h2') {
@@ -123,6 +131,12 @@ class HtmlParser4 {
         }
         return `<p>${preTags}${parseTarget}${postTags}</p>`;
     }
+
+    isHTML(str) {
+        const doc = new DOMParser().parseFromString(str, 'text/html');
+        return Array.from(doc.body.childNodes).some((node) => node.nodeType === 1);
+    }
+
 
     checkFirstTag(preTags) {
         let tag = '';
