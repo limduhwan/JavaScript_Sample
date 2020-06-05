@@ -62,16 +62,25 @@ const children2 = ['1','2','3','4','5', []];
 //
 // console.log('result1', result1);
 
-const data0 = [];
-const data1 = ['1', '2', '3'];
-const data2 = ["4b3f0fa4-c775-42c3-a9c7-b1b63a164ded", "fcbf91ef-4ac7-4d2f-845f-84cb41f379a0"];
+// const data0 = [];
+// const data1 = ['1', '2', '3'];
+// const data2 = ["4b3f0fa4-c775-42c3-a9c7-b1b63a164ded", "fcbf91ef-4ac7-4d2f-845f-84cb41f379a0"];
+//
+// const result1 = data1.filter((each1) => {
+//     return data2.every((each2)=>{
+//         return each1 !== each2;
+//     });
+// });
+//
+// console.log('result1', result1);
+// console.log('result2', data1.concat(data2));
+// console.log('result3', data0.concat(data2));
 
-const result1 = data1.filter((each1) => {
-    return data2.every((each2)=>{
-        return each1 !== each2;
-    });
-});
+const arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'];
 
-console.log('result1', result1);
-console.log('result2', data1.concat(data2));
-console.log('result3', data0.concat(data2));
+const aaa = function(array, a, b){
+    array[a] = array.splice(b, 1, array[a])[0];
+    return array;
+}
+
+console.log(aaa(arr, '13', '7'));
