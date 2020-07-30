@@ -13,9 +13,9 @@ const dimensions = [
 //
 // console.log(aaa);
 
-let arrA = [1, 2, 3, 4];
-let arrB = arrA.flatMap(x => [x * 2]);
-console.log(arrB);
+// let arrA = [1, 2, 3, 4];
+// let arrB = arrA.flatMap(x => [x * 2]);
+// console.log(arrB);
 
 // 2.Filter some // 배열 중 요소 하나라도 통과하는지
 // console.log( dimensions.filter( ({width, height}) => width < 300 ).some( ({width}) => width > 100 ) );
@@ -35,3 +35,11 @@ console.log(arrB);
 // 6.Filter findindex
 // 7.Filter map sort
 // 8.Map reduce
+
+const aaa = [
+  { url: '/api/users/auth/reset-password', method: 'PUT' },
+  { url: '/api/users/auth/google-login', method: 'POST' },
+  meta: []
+]
+
+console.log(aaa);
